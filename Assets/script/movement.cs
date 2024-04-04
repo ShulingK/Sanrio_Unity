@@ -5,6 +5,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
+    private Camera cam;
+
     public float movementSpeed;
     public float sensitivity;
     public float powerJump;
@@ -22,6 +25,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKey("z"))
         {
             currentVelocity.z += movementSpeed;
+            //GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + currentVelocity * Time.fixedDeltaTime);
         }
         if (Input.GetKey("s"))
         {
@@ -50,8 +54,7 @@ public class Movement : MonoBehaviour
 
 
         float xRot = Input.GetAxisRaw("Mouse Y");
-        rotation = new Vector3(-xRot, 0, 0) * sensitivity;
-        GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * Quaternion.Euler(rotation));
-
+        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sensitivity;
+        cam.transform.Rotate(-cameraRotation);
     }
 }
