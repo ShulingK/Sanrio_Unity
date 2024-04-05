@@ -9,15 +9,21 @@ public class NetworkManagerLobby : NetworkManager
 {
     [SerializeField] private int minPlayers = 3;
     [Scene][SerializeField] private string menuScene = string.Empty;
+    [SerializeField]
+    Behaviour[] Objects_to_disable;
 
     [Header("Room")]
     [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
+
+
+
 
     public static event Action onClientConnected;
     public static event Action onClientDisconnected;
 
     public List<NetworkRoomPlayerLobby> roomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
 
+    private bool isOwnCanva = true; 
 
     public override void OnClientConnect()
     {
@@ -44,6 +50,19 @@ public class NetworkManagerLobby : NetworkManager
         {
             conn.Disconnect();
             return;
+        }
+
+        if (isOwnCanva) { isOwnCanva = !isOwnCanva; }
+        else
+        {
+            // désactive les composants si ce n'est pas à nous
+            if (Objects_to_disable != null)
+            {
+                for (int i = 0; i < Objects_to_disable.Length; i++)
+                {
+                    Objects_to_disable[i].enabled = false;
+                }
+            }
         }
     }
 

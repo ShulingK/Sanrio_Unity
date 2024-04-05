@@ -201,7 +201,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 2550875271235273256, guid: d17593c800f710a448f1a370b2facd9b,
+  playerPrefab: {fileID: 6805131650622845538, guid: a76978b2a1d29cb489c819dd97b70d80,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
@@ -223,7 +223,9 @@ MonoBehaviour:
   timeInterpolationGui: 0
   minPlayers: 3
   menuScene: Assets/Game/Scenes/Lobby.unity
-  roomPlayerPrefab: {fileID: 4897964287319092025, guid: d17593c800f710a448f1a370b2facd9b,
+  Objects_to_disable:
+  - {fileID: 1662251271309514587, guid: a76978b2a1d29cb489c819dd97b70d80, type: 3}
+  roomPlayerPrefab: {fileID: 3295951875257444858, guid: a76978b2a1d29cb489c819dd97b70d80,
     type: 3}
 --- !u!4 &1281079394
 Transform:
@@ -592,6 +594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646084626492703597, guid: 87563760f57862a4f9854850b594cd37,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4679002180418481354, guid: 87563760f57862a4f9854850b594cd37,
         type: 3}
