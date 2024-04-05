@@ -29,7 +29,6 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetKey("s"))
         {
-
             currentVelocity.z += -movementSpeed;
         }
         if (Input.GetKey("q"))
@@ -40,6 +39,8 @@ public class Movement : MonoBehaviour
         {
             currentVelocity.x += movementSpeed;
         }
+
+        currentVelocity = transform.rotation * currentVelocity;
         GetComponent<Rigidbody>().velocity = currentVelocity;
 
         if (Input.GetKeyDown(KeyCode.Space) && feet.isGrounded)
