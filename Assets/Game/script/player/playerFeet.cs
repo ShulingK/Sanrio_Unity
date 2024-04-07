@@ -8,14 +8,14 @@ public class playerFeet : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "ground")
+        if (other.tag == "ground" || other.tag == "jumpable")
         {
             isGrounded = true;
         }
     }
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.tag == "ground")
+        if (collision.tag == "ground" || collision.tag == "jumpable")
         {
             isGrounded = false;
         }

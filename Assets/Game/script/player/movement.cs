@@ -55,7 +55,10 @@ public class Movement : MonoBehaviour
 
 
         float xRot = Input.GetAxisRaw("Mouse Y");
-        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sensitivity;
-        cam.transform.Rotate(-cameraRotation);
+        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sensitivity; 
+        if ((cam.transform.eulerAngles.x - cameraRotation.x) <= 90f || (cam.transform.eulerAngles.x - cameraRotation.x) >= 270f)
+        {
+            cam.transform.Rotate(-cameraRotation);
+        }
     }
 }

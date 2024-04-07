@@ -9,19 +9,22 @@ public class NetworkManagerLobby : NetworkManager
 {
     [SerializeField] private int minPlayers = 3;
     [Scene][SerializeField] private string menuScene = string.Empty;
+
     [SerializeField]
-    Behaviour[] Objects_to_disable;
+    Behaviour[] objects_to_disable;
 
     [Header("Room")]
     [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
 
-
+    [Header("Game")]
+    [SerializeField] private NetworkGamePlayerLobby gamePlayersPrefab = null;
 
 
     public static event Action onClientConnected;
     public static event Action onClientDisconnected;
 
     public List<NetworkRoomPlayerLobby> roomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
+    public List<NetworkGamePlayerLobby> gamePlayers { get; } = new List<NetworkGamePlayerLobby>();
 
     private bool isOwnCanva = true; 
 
@@ -52,15 +55,17 @@ public class NetworkManagerLobby : NetworkManager
             return;
         }
 
+        Debug.Log(isOwnCanva);
+
         if (isOwnCanva) { isOwnCanva = !isOwnCanva; }
         else
         {
             // désactive les composants si ce n'est pas à nous
-            if (Objects_to_disable != null)
+            if (objects_to_disable != null)
             {
-                for (int i = 0; i < Objects_to_disable.Length; i++)
+                for (int i = 0; i < objects_to_disable.Length; i++)
                 {
-                    Objects_to_disable[i].enabled = false;
+                    objects_to_disable[i].gameObject.SetActive(false);
                 }
             }
         }
@@ -118,5 +123,34 @@ public class NetworkManagerLobby : NetworkManager
         }
 
         return true;
+    }
+
+    public void StartGame()
+    {
+        if(SceneManager.GetActiveScene().name == menuScene)
+        {
+            if(!IsReadyToStart()) { return; }
+
+            ServerChangeScene("Scene_Map_01");
+        }
+    }
+
+    public override void ServerChangeScene(string newSceneName)
+    {
+        if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("Scene_Map"))
+        {
+            for (int i = roomPlayers.Count - 1; i >= 0; i--)
+            {
+                var conn = roomPlayers[i].connectionToClient;
+                var gamePlayersInstance = Instantiate(gamePlayersPrefab);
+                gamePlayersInstance.SetDisplayName(roomPlayers[i].name);
+
+                NetworkServer.Destroy(conn.identity.gameObject);
+
+                NetworkServer.ReplacePlayerForConnection(conn, gamePlayersInstance.gameObject);
+            }
+
+            base.ServerChangeScene(newSceneName);
+        }
     }
 }
