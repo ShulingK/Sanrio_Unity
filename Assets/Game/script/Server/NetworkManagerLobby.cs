@@ -58,20 +58,7 @@ public class NetworkManagerLobby : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        bool isFound = false;
-        foreach (NetworkConnectionToClient networkServer in NetworkServer.connections.Values)
-        {
-            if (conn.address == networkServer.address)
-            {
-                isFound = true;
-                break;
-            }
-        }
-        if(isFound)
-        {
-            return;
-        }
-        if (SceneManager.GetActiveScene().path == menuScene )
+        if (SceneManager.GetActiveScene().path == menuScene && !GameObject.Find("NetworkMenuLobby(Clone)"))
         {
             bool isLeader = roomPlayers.Count == 0;
 
