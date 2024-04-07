@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9175226787473605247}
   - component: {fileID: 8030055267767439253}
   - component: {fileID: 2524364667788175669}
+  - component: {fileID: 4379864439792858502}
   m_Layer: 0
   m_Name: weapon
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   nam: gun
   damage: 1
   range: 100
+--- !u!114 &4379864439792858502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920031135561940250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2e4669690807949a9de96262a0dbff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffectPrefab: {fileID: 6026015937924342277, guid: befdcdd58765e02459f92e6742528ec2,
+    type: 3}
 --- !u!1 &3175149185165683741
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +221,7 @@ GameObject:
   - component: {fileID: 5499999929598735483}
   - component: {fileID: 6808467338912661393}
   - component: {fileID: 1906834364129867027}
+  - component: {fileID: 4991616512538093311}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -435,6 +451,22 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4991616512538093311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984789666054413499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63ccd3575bc9a74c8b1689ffa02d3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryWeapon: {fileID: 2524364667788175669}
+  currentGraphics: {fileID: 0}
+  weaponHolder: {fileID: 0}
+  weaponLayerName: Weapon
 --- !u!1 &7439924615678117105
 GameObject:
   m_ObjectHideFlags: 0
