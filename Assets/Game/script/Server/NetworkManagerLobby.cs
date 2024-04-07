@@ -11,7 +11,7 @@ public class NetworkManagerLobby : NetworkManager
     [Scene][SerializeField] private string menuScene = string.Empty;
 
     [SerializeField]
-    Behaviour[] objects_to_disable;
+    public GameObject object_to_update;
 
     [Header("Room")]
     [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
@@ -25,9 +25,9 @@ public class NetworkManagerLobby : NetworkManager
 
     public List<NetworkRoomPlayerLobby> roomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
     public List<NetworkGamePlayerLobby> gamePlayers { get; } = new List<NetworkGamePlayerLobby>();
-
-    private bool isOwnCanva = true; 
-
+    /*
+    private List<string> addressAlreadyConnected = new List<string>();
+    */
     public override void OnClientConnect()
     {
         base.OnClientConnect();
@@ -54,26 +54,24 @@ public class NetworkManagerLobby : NetworkManager
             conn.Disconnect();
             return;
         }
-
-        Debug.Log(isOwnCanva);
-
-        if (isOwnCanva) { isOwnCanva = !isOwnCanva; }
-        else
-        {
-            // désactive les composants si ce n'est pas à nous
-            if (objects_to_disable != null)
-            {
-                for (int i = 0; i < objects_to_disable.Length; i++)
-                {
-                    objects_to_disable[i].gameObject.SetActive(false);
-                }
-            }
-        }
     }
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        if (SceneManager.GetActiveScene().path == menuScene)
+        bool isFound = false;
+        foreach (NetworkConnectionToClient networkServer in NetworkServer.connections.Values)
+        {
+            if (conn.address == networkServer.address)
+            {
+                isFound = true;
+                break;
+            }
+        }
+        if(isFound)
+        {
+            return;
+        }
+        if (SceneManager.GetActiveScene().path == menuScene )
         {
             bool isLeader = roomPlayers.Count == 0;
 

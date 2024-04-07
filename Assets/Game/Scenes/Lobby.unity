@@ -170,7 +170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1281079393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +223,8 @@ MonoBehaviour:
   timeInterpolationGui: 0
   minPlayers: 3
   menuScene: Assets/Game/Scenes/Lobby.unity
-  objects_to_disable: []
+  objects_to_disable:
+  - {fileID: 1255327932913504520, guid: 28208021c2b6c5e4490dc732d7d0c52e, type: 3}
   roomPlayerPrefab: {fileID: 845545019575982713, guid: 28208021c2b6c5e4490dc732d7d0c52e,
     type: 3}
   gamePlayersPrefab: {fileID: 8699966772527216101, guid: ec9acd60d87f81549a4107148362a4f9,

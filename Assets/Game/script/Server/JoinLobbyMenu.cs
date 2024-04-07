@@ -10,7 +10,6 @@ public class JoinLobbyMenu : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject landingPagePanel = null;
-    //[SerializeField] private TMP_InputField ipAddressinputField = null;
     [SerializeField] private Button joinButton = null;
 
     private void OnEnable()

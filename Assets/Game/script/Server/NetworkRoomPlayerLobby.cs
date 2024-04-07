@@ -64,7 +64,7 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
     private void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
     private void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
 
-    private void UpdateDisplay()
+    public void UpdateDisplay()
     {
         if (!isLocalPlayer)
         {
