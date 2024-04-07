@@ -8,11 +8,11 @@ public class Heal : MonoBehaviour
     [SerializeField]
     public float healValue;
     [SerializeField]
-    private float secondsToWait = 2f;
+    private float secondsToWait = 30f;
 
     [Header("Components")]
     [SerializeField]
-    private List<GameObject> ObjectToUnactive; 
+    public List<MeshRenderer> ObjectToUnactive; 
 
     public void Unactive()
     {
@@ -22,16 +22,16 @@ public class Heal : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        foreach (GameObject obj in ObjectToUnactive)
+        foreach (MeshRenderer obj in ObjectToUnactive)
         {
-            obj.SetActive(false);
+            obj.enabled = false;
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(secondsToWait);
 
-        foreach (GameObject obj in ObjectToUnactive)
+        foreach (MeshRenderer obj in ObjectToUnactive)
         { 
-            obj.SetActive(true); 
+            obj.enabled = true; 
         }
     }
 }

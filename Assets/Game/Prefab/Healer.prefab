@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healValue: 60
-  secondsToWait: 5
+  secondsToWait: 20
   ObjectToUnactive:
-  - {fileID: 2829819718867203358}
-  - {fileID: 7225887990587853372}
+  - {fileID: 3272289807962738245}
+  - {fileID: 6533170398743370358}
 --- !u!136 &3104319417775212228
 CapsuleCollider:
   m_ObjectHideFlags: 0
