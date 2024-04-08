@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - jumpable
+  - heal
+  - key
   layers:
   - Default
   - TransparentFX
