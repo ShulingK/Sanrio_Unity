@@ -8,8 +8,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private PlayerWeapon primaryWeapon;
 
+    [SerializeField]
     private PlayerWeapon currentWeapon;
-    public WeaponGraphics currentGraphics;
+    private WeaponGraphics currentGraphics;
 
     [SerializeField]
     private Transform weaponHolder;
@@ -17,8 +18,10 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private string weaponLayerName = "Weapon";
 
-    void start()
+    void Start()
     {
+        EquipWeapon(primaryWeapon);
+        Debug.Log("hey");
     }
 
     public PlayerWeapon GetCurrentWeapon()
@@ -29,6 +32,11 @@ public class WeaponManager : MonoBehaviour
     public WeaponGraphics GetCurrentGraphics()
     {
         return currentGraphics;
+    }
+
+    void EquipWeapon(PlayerWeapon _weapon)
+    {
+        currentWeapon = _weapon;
     }
 
 

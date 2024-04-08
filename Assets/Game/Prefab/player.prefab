@@ -122,6 +122,7 @@ MonoBehaviour:
   nam: gun
   damage: 1
   range: 100
+  fireRate: 3
 --- !u!114 &4379864439792858502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +366,9 @@ MonoBehaviour:
   components_to_disable:
   - {fileID: 3612015601410979316}
   - {fileID: 7959850964622102498}
+  - {fileID: 6808467338912661393}
+  - {fileID: 1906834364129867027}
+  - {fileID: 4991616512538093311}
   defaultCamera: {fileID: 0}
 --- !u!114 &-1701142185720583232
 MonoBehaviour:
@@ -451,6 +455,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 4294967295
+  hitEffectPrefab: {fileID: 6026015937924342277, guid: befdcdd58765e02459f92e6742528ec2,
+    type: 3}
 --- !u!114 &4991616512538093311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryWeapon: {fileID: 2524364667788175669}
-  currentGraphics: {fileID: 0}
+  currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 0}
   weaponLayerName: Weapon
 --- !u!1 &7439924615678117105

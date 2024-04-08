@@ -8,6 +8,7 @@ public class PlayerWeapon : MonoBehaviour
     public string nam;
     public int damage;
     public float range;
+    public float fireRate = 7f;
 
     // Start is called before the first frame update
     void Start()
