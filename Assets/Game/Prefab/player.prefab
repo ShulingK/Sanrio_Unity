@@ -123,6 +123,9 @@ MonoBehaviour:
   damage: 1
   range: 100
   fireRate: 3
+  bulletMax: 60
+  bulletCapacity: 30
+  bullet: 0
 --- !u!114 &4379864439792858502
 MonoBehaviour:
   m_ObjectHideFlags: 0

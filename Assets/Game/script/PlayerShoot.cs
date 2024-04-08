@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System.Threading.Tasks;
 
 [RequireComponent(typeof(WeaponManager))]
 public class PlayerShoot : MonoBehaviour
@@ -29,24 +30,39 @@ public class PlayerShoot : MonoBehaviour
     {
         currentWeapon = weaponManager.GetCurrentWeapon();
 
-        if (currentWeapon.fireRate <= 0f)
+        if (currentWeapon.bullet > 0)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (currentWeapon.fireRate <= 0f)
             {
-                Shoot();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Shoot();
+                    currentWeapon.bullet -= 1;
+                }
+            }
+            else
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Shoot();
+
+                    //Task.Wait();
+                    //Wait();
+                    InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
+                    
+                    Debug.Log(currentWeapon.bullet);
+                }
+                else if (Input.GetButtonUp("Fire1"))
+                {
+                    CancelInvoke("Shoot");
+                    currentWeapon.bullet -= 1;
+                }
             }
         }
-        else
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
-            }
-            else if (Input.GetButtonUp("Fire1"))
-            {
-                CancelInvoke("Shoot");
-            }
+        if (Input.GetKeyDown(KeyCode.R)){
+            Reload(currentWeapon);
         }
+        
     }
 
     private void Shoot()
@@ -57,6 +73,34 @@ public class PlayerShoot : MonoBehaviour
             Debug.Log(hit.collider.name);
             GameObject ink = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal), hit.transform);
             Destroy(ink,30f);
+        }
+    }
+
+    private void Reload(PlayerWeapon _currentWeapon)
+    {
+
+        if(_currentWeapon.bulletMax == 0)
+        {
+            return;
+        }
+        if(_currentWeapon.bulletMax>= _currentWeapon.bulletCapacity)//60>30
+        {
+
+            int bulletUse = _currentWeapon.bulletCapacity - _currentWeapon.bullet;
+            _currentWeapon.bulletMax -= bulletUse;//60 -30-25
+            _currentWeapon.bullet = _currentWeapon.bulletCapacity;//25 ->30
+
+            
+        }
+        else if(_currentWeapon.bulletMax < _currentWeapon.bulletCapacity)
+        {
+            int bulletUse = _currentWeapon.bulletCapacity - _currentWeapon.bullet;//30-25 = 5
+            _currentWeapon.bullet += bulletUse;//30-15 29/30 
+            _currentWeapon.bulletMax -= bulletUse ;
+        }
+        if(_currentWeapon.bulletMax < 0)
+        {
+            _currentWeapon.bulletMax = 0;
         }
     }
 
