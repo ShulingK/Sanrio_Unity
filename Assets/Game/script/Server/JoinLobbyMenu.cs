@@ -8,6 +8,7 @@ public class JoinLobbyMenu : MonoBehaviour
 {
     [SerializeField] private NetworkManagerLobby networkManager = null;
 
+
     [Header("UI")]
     [SerializeField] private GameObject landingPagePanel = null;
     [SerializeField] private Button joinButton = null;
@@ -32,6 +33,7 @@ public class JoinLobbyMenu : MonoBehaviour
         networkManager.StartClient();
 
         joinButton.interactable = false;
+
     }
 
 
@@ -46,5 +48,4 @@ public class JoinLobbyMenu : MonoBehaviour
     {
         joinButton.interactable = true;
     }
-
 }

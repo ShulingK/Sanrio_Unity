@@ -201,7 +201,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1255327932913504520, guid: 28208021c2b6c5e4490dc732d7d0c52e,
+  playerPrefab: {fileID: 4984789666054413499, guid: 795912a52fec88244ac95fffb06c7134,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
@@ -221,12 +221,9 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
-  minPlayers: 3
+  minPlayers: 2
   menuScene: Assets/Game/Scenes/Lobby.unity
-  objects_to_disable:
-  - {fileID: 1255327932913504520, guid: 28208021c2b6c5e4490dc732d7d0c52e, type: 3}
-  roomPlayerPrefab: {fileID: 845545019575982713, guid: 28208021c2b6c5e4490dc732d7d0c52e,
-    type: 3}
+  object_to_update: {fileID: 0}
   gamePlayersPrefab: {fileID: 8699966772527216101, guid: ec9acd60d87f81549a4107148362a4f9,
     type: 3}
 --- !u!4 &1281079394
@@ -544,9 +541,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 209528219095678871, guid: 87563760f57862a4f9854850b594cd37,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 209528219095678871, guid: 87563760f57862a4f9854850b594cd37,
+        type: 3}
       propertyPath: joinButton
       value: 
       objectReference: {fileID: 634743894}
+    - target: {fileID: 209528219095678871, guid: 87563760f57862a4f9854850b594cd37,
+        type: 3}
+      propertyPath: lobbyPanel
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 209528219095678871, guid: 87563760f57862a4f9854850b594cd37,
         type: 3}
       propertyPath: networkManager

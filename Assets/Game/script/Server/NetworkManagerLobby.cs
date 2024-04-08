@@ -7,14 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class NetworkManagerLobby : NetworkManager
 {
-    [SerializeField] private int minPlayers = 3;
+    [SerializeField] private int minPlayers = 2;
     [Scene][SerializeField] private string menuScene = string.Empty;
 
     [SerializeField]
     public GameObject object_to_update;
 
-    [Header("Room")]
-    [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
 
     [Header("Game")]
     [SerializeField] private NetworkGamePlayerLobby gamePlayersPrefab = null;
@@ -23,7 +21,7 @@ public class NetworkManagerLobby : NetworkManager
     public static event Action onClientConnected;
     public static event Action onClientDisconnected;
 
-    public List<NetworkRoomPlayerLobby> roomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
+    public List<PlayerSetup> roomPlayers { get; } = new List<PlayerSetup>();
     public List<NetworkGamePlayerLobby> gamePlayers { get; } = new List<NetworkGamePlayerLobby>();
     /*
     private List<string> addressAlreadyConnected = new List<string>();
@@ -37,7 +35,7 @@ public class NetworkManagerLobby : NetworkManager
 
     public override void OnClientDisconnect()
     {
-        base.OnClientConnect();
+        base.OnClientDisconnect();
 
         onClientDisconnected?.Invoke();
     }
@@ -58,28 +56,31 @@ public class NetworkManagerLobby : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        bool isFound = false;
-        foreach (NetworkConnectionToClient networkServer in NetworkServer.connections.Values)
+        Debug.Log("OnServerAddPlayer");
+        /*
+        foreach (var c in NetworkServer.connections.Values)
         {
-            if (conn.address == networkServer.address)
+            if (c != conn)
             {
-                isFound = true;
-                break;
+                roomPlayerUI.UpdateDisplay();
+                return;
             }
         }
-        if(isFound)
-        {
-            return;
-        }
+        */
+
         if (SceneManager.GetActiveScene().path == menuScene )
         {
+            Debug.Log("Instantiate");
             bool isLeader = roomPlayers.Count == 0;
 
-            NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
+            
+            GameObject player = Instantiate(playerPrefab);
+            
 
-            roomPlayerInstance.IsLeader = isLeader;
+            player.GetComponent<PlayerSetup>().lobby_UI.IsLeader = isLeader;
 
-            NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
+
+            NetworkServer.AddPlayerForConnection(conn, player);
         }
     }
 
@@ -87,7 +88,7 @@ public class NetworkManagerLobby : NetworkManager
     {
         if (conn.identity != null)
         {
-            var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
+            var player = conn.identity.GetComponent<PlayerSetup>();
             
             roomPlayers.Remove(player);
 
@@ -107,7 +108,7 @@ public class NetworkManagerLobby : NetworkManager
     {
         foreach (var player in roomPlayers)
         {
-            player.HandleReadyToStart(IsReadyToStart());
+            player.lobby_UI.HandleReadyToStart(IsReadyToStart());
         }
     }
 
@@ -117,7 +118,7 @@ public class NetworkManagerLobby : NetworkManager
 
         foreach (var player in roomPlayers)
         {
-            if (!player.IsReady) { return false; }
+            if (!player.lobby_UI.IsReady) { return false; }
         }
 
         return true;
@@ -125,17 +126,14 @@ public class NetworkManagerLobby : NetworkManager
 
     public void StartGame()
     {
-        if(SceneManager.GetActiveScene().name == menuScene)
-        {
-            if(!IsReadyToStart()) { return; }
+        if(!IsReadyToStart()) { return; }
 
-            ServerChangeScene("Scene_Map_01");
-        }
+        ServerChangeScene("Scene_Map_01");
     }
 
     public override void ServerChangeScene(string newSceneName)
     {
-        if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("Scene_Map"))
+        if (SceneManager.GetActiveScene().name != newSceneName && newSceneName.StartsWith("Scene_Map"))
         {
             for (int i = roomPlayers.Count - 1; i >= 0; i--)
             {

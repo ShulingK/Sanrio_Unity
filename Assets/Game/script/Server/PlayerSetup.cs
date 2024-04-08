@@ -9,10 +9,27 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Camera defaultCamera;
 
+
+    private NetworkManagerLobby room;
+
+
+    public NetworkRoomPlayerLobby lobby_UI;
+
+    private NetworkManagerLobby Room
+    {
+        get
+        {
+            if (room != null) { return room; }
+            return room = NetworkManager.singleton as NetworkManagerLobby;
+        }
+    }
+
     private void Start()
     {
         if (!isLocalPlayer)
         {
+            lobby_UI.gameObject.SetActive(false);
+
             // désactive les composants si ce n'est pas à nous
             if (components_to_disable != null)
             {
@@ -35,5 +52,20 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (defaultCamera != null)
             Camera.main.gameObject.SetActive(true);
+    }
+
+
+    public override void OnStartClient()
+    {
+        Room.roomPlayers.Add(this);
+
+        lobby_UI.UpdateDisplay();
+    }
+
+    public override void OnStopClient()
+    {
+        Room.roomPlayers.Remove(this);
+
+        lobby_UI.UpdateDisplay();
     }
 }

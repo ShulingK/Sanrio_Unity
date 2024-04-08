@@ -48,19 +48,6 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
         lobbyUI.SetActive(true);
     }
 
-    public override void OnStartClient()
-    {
-        Room.roomPlayers.Add(this);
-
-        UpdateDisplay();
-    }
-
-    public override void OnStopClient()
-    {
-        Room.roomPlayers.Remove(this);
-
-        UpdateDisplay();
-    }
     private void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
     private void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
 
@@ -72,7 +59,7 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
             {
                 if (player.isLocalPlayer) 
                 {
-                    player.UpdateDisplay();
+                    player.lobby_UI.UpdateDisplay();
                     break;
                 }
             }
@@ -88,8 +75,8 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
 
         for (int i = 0; i < Room.roomPlayers.Count; i++)
         {
-            playerNameTexts[i].text = Room.roomPlayers[i].DisplayName;
-            playerReadyTexts[i].text = Room.roomPlayers[i].IsReady ?
+            playerNameTexts[i].text = Room.roomPlayers[i].lobby_UI.DisplayName;
+            playerReadyTexts[i].text = Room.roomPlayers[i].lobby_UI.IsReady ?
                 "<color=green>Ready</color>" :
                 "<color=red>Not Ready</color>";
         }
