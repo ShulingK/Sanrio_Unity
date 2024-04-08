@@ -42,10 +42,14 @@ public class CharacterManager : MonoBehaviour
     {
         if (other.tag == "heal")
         {
-            Debug.Log("collideeeee");
-
             GetHeal(other.GetComponent<Heal>().healValue);
             other.GetComponent<Heal>().Unactive();
+        }
+
+        if (other.tag == "key")
+        {
+            Debug.Log("collideeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+            other.GetComponent<KeyManager>().AddKey();
         }
     }
 }

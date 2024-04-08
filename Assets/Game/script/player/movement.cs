@@ -13,6 +13,11 @@ public class Movement : MonoBehaviour
     public float powerJump;
     public playerFeet feet;
     private Vector3 rotation;
+
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
+
     void Start()
     {
         Debug.Log("Hello world");
@@ -48,6 +53,16 @@ public class Movement : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.up * powerJump);
         }
 
+
+
+        if(currentVelocity.x != 0 || currentVelocity.y != 0) 
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
 
         float yRot = Input.GetAxisRaw("Mouse X");
         rotation = new Vector3(0, yRot, 0) * sensitivity;
