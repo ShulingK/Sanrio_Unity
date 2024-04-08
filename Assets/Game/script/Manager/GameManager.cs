@@ -15,16 +15,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gameDuration = 480f;
 
-    [SerializeField]
+    /*[SerializeField]
     private TextMeshProUGUI timer;
-
+*/
     [Header("GameData")]
     [SerializeField]
     private int keyCount = 0;
     public int keyCountMax = 4;
     
-    [SerializeField]
-    private TextMeshProUGUI textKeyCount;
+    /*[SerializeField]
+    private TextMeshProUGUI textKeyCount;*/
     public void Awake()
     {
         if (Instance != null)
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         time = gameDuration - (int)Time.time - startTime;
         
-        timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+        //timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
 
         DisplayKeyCount();
     }
@@ -63,6 +63,6 @@ public class GameManager : MonoBehaviour
 
     public void DisplayKeyCount()
     {
-        textKeyCount.text = keyCount.ToString();
+        //textKeyCount.text = keyCount.ToString();
     }
 }
