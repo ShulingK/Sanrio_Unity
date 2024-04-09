@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NetworkManagerLobby : NetworkManager
 {
-    [SerializeField] private int minPlayers = 3;
+    [SerializeField] private int minPlayers = 1;
 
 
     [Header("Game")]
