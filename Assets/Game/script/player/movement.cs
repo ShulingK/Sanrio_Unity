@@ -12,7 +12,6 @@ public class Movement : MonoBehaviour
     public float sensitivity;
     public float powerJump;
     public playerFeet feet;
-    private Vector3 rotation;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -64,13 +63,15 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
 
+
+        Vector3 cameraRotation;
         float yRot = Input.GetAxisRaw("Mouse X");
-        rotation = new Vector3(0, yRot, 0) * sensitivity;
-        GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * Quaternion.Euler(rotation));
+        cameraRotation = new Vector3(0, yRot, 0) * sensitivity;
+        GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * Quaternion.Euler(cameraRotation));
 
 
         float xRot = Input.GetAxisRaw("Mouse Y");
-        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sensitivity; 
+        cameraRotation = new Vector3(xRot, 0, 0) * sensitivity; 
         if ((cam.transform.eulerAngles.x - cameraRotation.x) <= 90f || (cam.transform.eulerAngles.x - cameraRotation.x) >= 270f)
         {
             cam.transform.Rotate(-cameraRotation);

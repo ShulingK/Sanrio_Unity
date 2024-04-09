@@ -12,8 +12,9 @@ public class PlayerSetup : NetworkBehaviour
 
     private NetworkManagerLobby room;
 
-
     public NetworkRoomPlayerLobby lobby_UI;
+
+    public bool isBabyboo = false;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;
