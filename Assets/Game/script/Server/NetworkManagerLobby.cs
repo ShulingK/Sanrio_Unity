@@ -116,7 +116,8 @@ public class NetworkManagerLobby : NetworkManager
 
         foreach (var player in roomPlayers)
         {
-            player.lobby_UI.gameObject.SetActive(false);
+            player.transform.position = new Vector3(0, 50, 0);
+            player.OnGameStart();
         }
     }
 }

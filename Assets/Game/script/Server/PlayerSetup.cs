@@ -15,6 +15,16 @@ public class PlayerSetup : NetworkBehaviour
 
     public NetworkRoomPlayerLobby lobby_UI;
 
+    [SyncVar(hook = nameof(HandleIsInGame))]
+    private bool IsInGame;
+
+    private void HandleIsInGame(bool oldValue, bool newValue)
+    {
+        lobby_UI.gameObject.SetActive(!IsInGame);
+    }
+
+
+
     private NetworkManagerLobby Room
     {
         get
@@ -60,6 +70,8 @@ public class PlayerSetup : NetworkBehaviour
         Room.roomPlayers.Add(this);
 
         lobby_UI.UpdateDisplay();
+
+        transform.position = new Vector3(0, 500, 0);
     }
 
     public override void OnStopClient()
@@ -67,5 +79,10 @@ public class PlayerSetup : NetworkBehaviour
         Room.roomPlayers.Remove(this);
 
         lobby_UI.UpdateDisplay();
+    }
+
+    public void OnGameStart()
+    {
+        IsInGame = true;
     }
 }
