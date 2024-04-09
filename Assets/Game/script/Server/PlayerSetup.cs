@@ -6,10 +6,6 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] components_to_disable;
 
-    [SerializeField]
-    Camera defaultCamera;
-
-
     private NetworkManagerLobby room;
 
     public NetworkRoomPlayerLobby lobby_UI;
@@ -50,19 +46,6 @@ public class PlayerSetup : NetworkBehaviour
                 }
             }
         }
-        else
-        {
-            if (defaultCamera != null)
-            {
-                Camera.main.gameObject.SetActive(false);
-            }
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (defaultCamera != null)
-            Camera.main.gameObject.SetActive(true);
     }
 
 
