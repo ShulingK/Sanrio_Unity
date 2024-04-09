@@ -17,6 +17,11 @@ public class PlayerSetup : NetworkBehaviour
 
     private void HandleIsInGame(bool oldValue, bool newValue)
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        transform.position = Vector3.zero;
+
         lobby_UI.gameObject.SetActive(!IsInGame);
     }
 

@@ -179,7 +179,6 @@ MonoBehaviour:
   - {fileID: 7959850964622102498}
   - {fileID: 6808467338912661393}
   - {fileID: 8161953874838269410}
-  defaultCamera: {fileID: 0}
   lobby_UI: {fileID: 6684560372716739956}
   isBabyboo: 0
 --- !u!114 &-1701142185720583232
@@ -246,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 3612015601410979316}
-  movementSpeed: 5
+  movementSpeed: 200
   sensitivity: 5
   powerJump: 100
   feet: {fileID: 8143024381182295045}

@@ -18,19 +18,25 @@ public class Movement : MonoBehaviour
     [SerializeField] private Animator animator;
 
 
+    Rigidbody rb;
+
+
+
     void Start()
     {
-        Debug.Log("Hello world");
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        Vector3 currentVelocity = new(0, GetComponent<Rigidbody>().velocity.y, 0);
+        
+
+        //movement
+        Vector3 currentVelocity = new(0, 0, 0);
         if (Input.GetKey("z"))
         {
             currentVelocity.z += movementSpeed;
-            //GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + currentVelocity * Time.fixedDeltaTime);
         }
         if (Input.GetKey("s"))
         {
@@ -45,9 +51,13 @@ public class Movement : MonoBehaviour
             currentVelocity.x += movementSpeed;
         }
 
-        currentVelocity = transform.rotation * currentVelocity;
-        GetComponent<Rigidbody>().velocity = currentVelocity;
+        /*currentVelocity = transform.rotation * currentVelocity;
+        GetComponent<Rigidbody>().velocity = currentVelocity;*/
+        
+        transform.position += new Vector3(currentVelocity.x * transform.forward.x, 0, currentVelocity.z * transform.forward.z) * Time.deltaTime;
 
+
+        // jump 
         if (Input.GetKeyDown(KeyCode.Space) && feet.isGrounded)
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * powerJump);
@@ -66,7 +76,7 @@ public class Movement : MonoBehaviour
 
         float yRot = Input.GetAxisRaw("Mouse X");
         rotation = new Vector3(0, yRot, 0) * sensitivity;
-        GetComponent<Rigidbody>().MoveRotation(GetComponent<Rigidbody>().rotation * Quaternion.Euler(rotation));
+        cam.transform.Rotate(rotation);
 
 
         float xRot = Input.GetAxisRaw("Mouse Y");
