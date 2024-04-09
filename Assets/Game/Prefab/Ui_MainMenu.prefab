@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkManager: {fileID: 0}
-  lanfingPagePanel: {fileID: 5772447222085100481}
+  landingPagePanel: {fileID: 0}
 --- !u!114 &209528219095678871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 0}
   landingPagePanel: {fileID: 0}
-  ipAddressinputField: {fileID: 0}
   joinButton: {fileID: 0}
 --- !u!1 &5105176635675048636
 GameObject:
@@ -2035,3 +2034,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nameInputField: {fileID: 9078380884782371149}
   m_Connection: {fileID: 3755880761796737499}
+  text: {fileID: 0}
