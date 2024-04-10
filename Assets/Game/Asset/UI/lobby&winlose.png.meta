@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -95,18 +95,205 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: lobby&winlose_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 861
+        width: 415
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55036f4ab250dc44b9748879d5b8d166
+      internalID: -1182185784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_4
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 625
+        width: 416
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4da2203011641a743814f5640746b74d
+      internalID: -1007057702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_7
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 597
+        width: 856
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5eef35bb25752e488ebe1962ad2a636
+      internalID: -321029973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_9
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 312
+        width: 365
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ebf9d3619cffd4b873dba3776540d5
+      internalID: -1962566823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_10
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 412
+        width: 365
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 885195dd612fbf1429e9e0610c15f4d8
+      internalID: 786242084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_14
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 107
+        width: 365
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48cfd979259583e48b83f1a75728cccc
+      internalID: 1652495723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_15
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 146
+        width: 429
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd9b621deaee2d4c84a53800098b108
+      internalID: 1944766162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lobby&winlose_1
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 44
+        width: 648
+        height: 457
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b5a411d5a70faa43b8f9da18cbfd54f
+      internalID: -1906711521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 639dd6dcbd53e664ab579572c3c8ff83
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lobby&winlose_0: -1182185784
+      lobby&winlose_1: -1906711521
+      lobby&winlose_10: 786242084
+      lobby&winlose_11: -1310002016
+      lobby&winlose_12: -625396308
+      lobby&winlose_13: 1618643056
+      lobby&winlose_14: 1652495723
+      lobby&winlose_15: 1944766162
+      lobby&winlose_16: -999622056
+      lobby&winlose_17: 1554426900
+      lobby&winlose_18: -1265569177
+      lobby&winlose_2: -98282285
+      lobby&winlose_3: -273848737
+      lobby&winlose_4: -1007057702
+      lobby&winlose_5: -1848172693
+      lobby&winlose_6: 1763096764
+      lobby&winlose_7: -321029973
+      lobby&winlose_8: -1486936796
+      lobby&winlose_9: -1962566823
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
