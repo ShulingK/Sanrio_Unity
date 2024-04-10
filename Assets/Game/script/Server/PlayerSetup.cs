@@ -9,6 +9,7 @@ public class PlayerSetup : NetworkBehaviour
     private NetworkManagerLobby room;
 
     public NetworkRoomPlayerLobby lobby_UI;
+    public GameObject game_UI;
 
     public bool isBabyboo = false;
 
@@ -23,6 +24,7 @@ public class PlayerSetup : NetworkBehaviour
         transform.position = Vector3.zero;
 
         lobby_UI.gameObject.SetActive(!IsInGame);
+        game_UI.gameObject.SetActive(IsInGame);
     }
 
 
