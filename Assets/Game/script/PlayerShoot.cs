@@ -75,8 +75,13 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask))
         {
-            Debug.Log(hit.collider.name);
             GameObject ink = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal), hit.transform);
+            if(hit.collider.tag == "Player")
+            {
+                CharacterManager test = hit.collider.gameObject.GetComponent<CharacterManager>();
+                test.TakeDamage(currentWeapon.damage);
+
+            }
             Destroy(ink,30f);
             
         }
