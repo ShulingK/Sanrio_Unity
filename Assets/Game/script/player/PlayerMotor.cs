@@ -24,6 +24,7 @@ public class PlayerMotor : MonoBehaviour
     {
         rotation = _rotation;
     }
+
     public void CameraRotate(Vector3 _cameraRotation)
     {
         cameraRotation = _cameraRotation;
@@ -47,6 +48,7 @@ public class PlayerMotor : MonoBehaviour
     {
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
 
-        cam.transform.Rotate(-cameraRotation);
+        if ((cam.transform.eulerAngles.x - cameraRotation.x) <= 90f || (cam.transform.eulerAngles.x - cameraRotation.x) >= 270f)
+            cam.transform.Rotate(-cameraRotation);
     }
 }

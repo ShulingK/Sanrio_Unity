@@ -91,13 +91,24 @@ public class Movement : MonoBehaviour
 
 public class Movement : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField]
     private float speed;
 
     [SerializeField]
     private float sensivity;
 
+    [SerializeField]
+    private float jumpForce = 100f;
+
+    [Header("Utilities")]
+    [SerializeField]
+    private playerFeet feet;
+
     private PlayerMotor motor;
+
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -106,6 +117,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        // Player movement
         float xMov = Input.GetAxisRaw("Horizontal");
         float zMov = Input.GetAxisRaw("Vertical");
 
@@ -116,6 +128,8 @@ public class Movement : MonoBehaviour
 
         motor.Move(velocity);
 
+
+        // mMouse movement horizontal
         float yRot = Input.GetAxisRaw("Mouse X");
 
         Vector3 rotation = new Vector3(0, yRot, 0) * sensivity;
@@ -123,11 +137,25 @@ public class Movement : MonoBehaviour
         motor.Rotate(rotation);
 
 
+        // Mouse movement vertical 
         float xRot = Input.GetAxisRaw("Mouse Y");
 
         Vector3 cameraRotation = new Vector3(xRot, 0, 0) * sensivity;
 
         motor.CameraRotate(cameraRotation);
+
+        // Jump 
+        if (Input.GetKeyDown(KeyCode.Space) && feet.isGrounded)
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * 100);
+        // Animation
+        /*if (  != 0 || currentVelocity.y != 0)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }*/
 
     }
 }

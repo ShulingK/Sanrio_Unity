@@ -8,8 +8,10 @@ public class playerFeet : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("stay");
         if (other.tag == "ground" || other.tag == "jumpable")
         {
+            Debug.Log("Collide");
             isGrounded = true;
         }
     }
