@@ -35,7 +35,7 @@ public class CharacterManager : MonoBehaviour
 
     public void Death()
     {
-
+        Debug.Log("dead");
     }
 
     public void OnTriggerEnter(Collider other)
