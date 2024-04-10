@@ -14,6 +14,7 @@ public class PlayerSetup : NetworkBehaviour
     public GameObject baby_UI;
     public CapsuleCollider baby_Collider;
     public GameObject baby_Renderer;
+    public GameObject weapon;
 
 
     [Header("Paper")]
@@ -21,7 +22,7 @@ public class PlayerSetup : NetworkBehaviour
     public CapsuleCollider paper_Collider;
     public GameObject paper_Renderer;
 
-    public bool isBabyboo = false;
+    public bool isBabyboo;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;
@@ -30,23 +31,27 @@ public class PlayerSetup : NetworkBehaviour
     {
         /*Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;*/
-
-        transform.position = Vector3.zero;
-
-        lobby_UI.gameObject.SetActive(!IsInGame);
-
-        if(isBabyboo)
+        int rnd = Random.Range(1, 3);
+        if (rnd == 1)
         {
+            isBabyboo = true;
             baby_UI.gameObject.SetActive(IsInGame);
             paper_Collider.enabled = !IsInGame;
             baby_Renderer.SetActive(IsInGame);
+            weapon.SetActive(IsInGame);
         }
         else
         {
+            isBabyboo = false;
+            Debug.Log("Comment ça?");
             paper_UI.gameObject.SetActive(IsInGame);
             baby_Collider.enabled = !IsInGame;
             paper_Renderer.SetActive(IsInGame);
         }
+        transform.position = Vector3.zero;
+
+        lobby_UI.gameObject.SetActive(!IsInGame);
+
     }
 
 
@@ -74,6 +79,7 @@ public class PlayerSetup : NetworkBehaviour
                     components_to_disable[i].enabled = false;
                 }
             }
+            
         }
     }
 
