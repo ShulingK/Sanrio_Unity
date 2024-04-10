@@ -1,13 +1,11 @@
 using Mirror;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NetworkManagerLobby : NetworkManager
 {
-    [SerializeField] private int minPlayers = 2;
+    [SerializeField] private int minPlayers = 1;
 
 
     [Header("Game")]
@@ -22,6 +20,20 @@ public class NetworkManagerLobby : NetworkManager
 
     public List<PlayerSetup> roomPlayers { get; } = new List<PlayerSetup>();
     public List<NetworkGamePlayerLobby> gamePlayers { get; } = new List<NetworkGamePlayerLobby>();
+
+
+    
+    [Header("SpawnPoints")]
+    [SerializeField] private List<GameObject> babybooSpawnPoints;
+    [SerializeField] private List<GameObject> papermanSpawnPoints;
+    [SerializeField] private List<GameObject> boostSpawnPoints;
+    [SerializeField] private List<GameObject> keySpawnPoints;
+
+    [Header("Object to Spawn")]
+    [SerializeField] private GameObject boostPrefab;
+    [SerializeField] private List<GameObject> keysPrefab;
+
+
     /*
     private List<string> addressAlreadyConnected = new List<string>();
     */
@@ -114,10 +126,59 @@ public class NetworkManagerLobby : NetworkManager
         foreach (GameObject go in game_GameObject)
             go.SetActive(true);
 
+        int[] Babyboos = new int[(int)Math.Floor((double)roomPlayers.Count / 3)];
+        for(int i = 0; i < Babyboos.Length; i++)
+        {
+            roomPlayers[i].isBabyboo = true;
+        }
+        
         foreach (var player in roomPlayers)
         {
-            player.transform.position = new Vector3(0, 50, 0);
             player.OnGameStart();
         }
+
+        //KEY 
+        for(int i = 0; i < 4; i++)
+        {
+            GameObject go = keySpawnPoints[UnityEngine.Random.Range(0, keySpawnPoints.Count - i)];
+
+            Instantiate(keysPrefab[i], go.transform.position, UnityEngine.Quaternion.identity);
+
+            keySpawnPoints.Remove(go);
+        }
+        
+
+        //BOOST
+        for(int i = 0; i < 4; i++)
+        {
+            GameObject go = boostSpawnPoints[UnityEngine.Random.Range(0, keySpawnPoints.Count - i)];
+
+            Instantiate(boostPrefab, go.transform.position, UnityEngine.Quaternion.identity);
+
+            keySpawnPoints.Remove(go);
+        }
+
+        //BABYBOO
+        for (int i = 0; i < roomPlayers.Count; i++)
+        {
+            if (roomPlayers[i].isBabyboo)
+            {
+                GameObject go = babybooSpawnPoints[UnityEngine.Random.Range(0, babybooSpawnPoints.Count - i)];
+
+                roomPlayers[i].transform.position = go.transform.position;
+
+                babybooSpawnPoints.Remove(go);
+            }
+            else
+            {
+                GameObject go = papermanSpawnPoints[UnityEngine.Random.Range(0, papermanSpawnPoints.Count - i)];
+
+                roomPlayers[i].transform.position = go.transform.position;
+
+                papermanSpawnPoints.Remove(go);
+            }
+        }
+
+
     }
 }

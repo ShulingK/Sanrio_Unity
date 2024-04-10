@@ -6,20 +6,22 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] components_to_disable;
 
-    [SerializeField]
-    Camera defaultCamera;
-
-
     private NetworkManagerLobby room;
 
-
     public NetworkRoomPlayerLobby lobby_UI;
+
+    public bool isBabyboo = false;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;
 
     private void HandleIsInGame(bool oldValue, bool newValue)
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        transform.position = Vector3.zero;
+
         lobby_UI.gameObject.SetActive(!IsInGame);
     }
 
@@ -49,19 +51,6 @@ public class PlayerSetup : NetworkBehaviour
                 }
             }
         }
-        else
-        {
-            if (defaultCamera != null)
-            {
-                Camera.main.gameObject.SetActive(false);
-            }
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (defaultCamera != null)
-            Camera.main.gameObject.SetActive(true);
     }
 
 

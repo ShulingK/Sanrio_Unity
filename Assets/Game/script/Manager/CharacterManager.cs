@@ -48,7 +48,6 @@ public class CharacterManager : MonoBehaviour
 
         if (other.tag == "key")
         {
-            Debug.Log("collideeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
             other.GetComponent<KeyManager>().AddKey();
         }
     }
