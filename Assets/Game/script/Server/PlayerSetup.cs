@@ -9,7 +9,17 @@ public class PlayerSetup : NetworkBehaviour
     private NetworkManagerLobby room;
 
     public NetworkRoomPlayerLobby lobby_UI;
-    public GameObject game_UI;
+
+    [Header("Baby")]
+    public GameObject baby_UI;
+    public CapsuleCollider baby_Collider;
+    public GameObject baby_Renderer;
+
+
+    [Header("Paper")]
+    public GameObject paper_UI;
+    public CapsuleCollider paper_Collider;
+    public GameObject paper_Renderer;
 
     public bool isBabyboo = false;
 
@@ -18,13 +28,25 @@ public class PlayerSetup : NetworkBehaviour
 
     private void HandleIsInGame(bool oldValue, bool newValue)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        /*Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;*/
 
         transform.position = Vector3.zero;
 
         lobby_UI.gameObject.SetActive(!IsInGame);
-        game_UI.gameObject.SetActive(IsInGame);
+
+        if(isBabyboo)
+        {
+            baby_UI.gameObject.SetActive(IsInGame);
+            paper_Collider.enabled = !IsInGame;
+            baby_Renderer.SetActive(IsInGame);
+        }
+        else
+        {
+            paper_UI.gameObject.SetActive(IsInGame);
+            baby_Collider.enabled = !IsInGame;
+            paper_Renderer.SetActive(IsInGame);
+        }
     }
 
 
