@@ -189,7 +189,7 @@ public class NetworkManagerLobby : NetworkManager
         //BOOST
         for (int i = 0; i < 4; i++)
         {
-            GameObject go = boostSpawnPoints[UnityEngine.Random.Range(0, boostSpawnPoints.Count - i)];
+            GameObject go = boostSpawnPoints[UnityEngine.Random.Range(0, boostSpawnPoints.Count)];
 
             Instantiate(boostPrefab, go.transform.position, UnityEngine.Quaternion.identity);
 
@@ -201,17 +201,17 @@ public class NetworkManagerLobby : NetworkManager
         {
             if (roomPlayers[i].isBabyboo)
             {
-                GameObject go = babybooSpawnPoints[UnityEngine.Random.Range(0, babybooSpawnPoints.Count - i)];
+                GameObject go = babybooSpawnPoints[UnityEngine.Random.Range(0, babybooSpawnPoints.Count)];
 
-                roomPlayers[i].transform.position = go.transform.position;
-
+                roomPlayers[i].spawnPos = go.transform.position;
+                
                 babybooSpawnPoints.Remove(go);
             }
             else
             {
-                GameObject go = papermanSpawnPoints[UnityEngine.Random.Range(0, papermanSpawnPoints.Count - i)];
+                GameObject go = papermanSpawnPoints[UnityEngine.Random.Range(0, papermanSpawnPoints.Count)];
 
-                roomPlayers[i].transform.position = go.transform.position;
+                roomPlayers[i].spawnPos = go.transform.position;
 
                 papermanSpawnPoints.Remove(go);
             }

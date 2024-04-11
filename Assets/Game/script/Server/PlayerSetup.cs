@@ -6,6 +6,15 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] components_to_disable;
 
+    [SyncVar(hook = nameof(HandleSpawnPos))]
+    public Vector3 spawnPos;
+    private void HandleSpawnPos(Vector3 oldValue, Vector3 newValue)
+    {
+        transform.position = spawnPos;
+    }
+
+
+
     private NetworkManagerLobby room;
 
     public NetworkRoomPlayerLobby lobby_UI;
