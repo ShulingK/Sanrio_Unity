@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class PlayerSetup : NetworkBehaviour
 {
@@ -13,8 +14,6 @@ public class PlayerSetup : NetworkBehaviour
         transform.position = spawnPos;
     }
 
-
-
     private NetworkManagerLobby room;
 
     public NetworkRoomPlayerLobby lobby_UI;
@@ -24,12 +23,19 @@ public class PlayerSetup : NetworkBehaviour
     public CapsuleCollider baby_Collider;
     public GameObject baby_Renderer;
     public GameObject weapon;
+    public TextMeshProUGUI babyboo_timer;
+    public TextMeshProUGUI babyboo_bullet;
+    public TextMeshProUGUI babyboo_reload;
+    public TextMeshProUGUI babyboo_paperInGame;
+
 
 
     [Header("Paper")]
     public GameObject paper_UI;
     public CapsuleCollider paper_Collider;
     public GameObject paper_Renderer;
+    public TextMeshProUGUI paper_TextMeshProUGUI;
+    public TextMeshProUGUI paper_timer;
 
     [SyncVar(hook = nameof(HandleIsBabyboo))]
     public bool isBabyboo;
@@ -49,6 +55,9 @@ public class PlayerSetup : NetworkBehaviour
 
     public bool isAlreadySet = false;
 
+
+    private PlayerShoot playerShoot;
+
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;
 
@@ -57,6 +66,26 @@ public class PlayerSetup : NetworkBehaviour
         lobby_UI.gameObject.SetActive(!IsInGame);
     }
 
+    private void Start()
+    {
+        playerShoot = gameObject.GetComponent<PlayerShoot>();
+    }
+
+    private void Update()
+    {
+        GameManager.Instance.DisplayKeyCount(paper_TextMeshProUGUI);    
+
+        if (isBabyboo)
+        {
+            babyboo_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
+            babyboo_bullet.text = playerShoot.currentWeapon.bullet.ToString();
+            babyboo_reload.text = playerShoot.currentWeapon.bulletMax.ToString();
+        }
+        else
+        {
+            paper_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
+        }
+    }
 
 
     private NetworkManagerLobby Room
@@ -92,8 +121,6 @@ public class PlayerSetup : NetworkBehaviour
         Room.roomPlayers.Add(this);
 
         lobby_UI.UpdateDisplay();
-
-        /*transform.position = new Vector3(0, 500, 0);*/
     }
 
     public override void OnStopClient()

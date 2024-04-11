@@ -1,6 +1,7 @@
 using Mirror;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NetworkManagerLobby : NetworkManager
@@ -10,14 +11,9 @@ public class NetworkManagerLobby : NetworkManager
     [Header("Sections")]
     [SerializeField] private List<GameObject> game_GameObject;
 
-
-
-    [SyncVar]
-    private List<GameObject> ListOfBoosts = new List<GameObject>();
-    [SyncVar]
-    private List<GameObject> ListOfKeys = new List<GameObject>();
-
-
+    [Header("Pool")]
+    public Pool keyPool;
+    public Pool boostPool;
 
     [Header("SpawnPoints")]
     [SerializeField] private List<GameObject> babybooSpawnPoints;
@@ -180,7 +176,7 @@ public class NetworkManagerLobby : NetworkManager
         {
             GameObject go = keySpawnPoints[UnityEngine.Random.Range(0, keySpawnPoints.Count - i)];
 
-            Instantiate(keysPrefab[i], go.transform.position, UnityEngine.Quaternion.identity);
+            keyPool.spawn = go.transform.position;
 
             keySpawnPoints.Remove(go);
         }
@@ -191,7 +187,7 @@ public class NetworkManagerLobby : NetworkManager
         {
             GameObject go = boostSpawnPoints[UnityEngine.Random.Range(0, boostSpawnPoints.Count)];
 
-            Instantiate(boostPrefab, go.transform.position, UnityEngine.Quaternion.identity);
+            boostPool.spawn = go.transform.position;
 
             boostSpawnPoints.Remove(go);
         }

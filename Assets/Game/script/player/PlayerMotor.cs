@@ -40,7 +40,8 @@ public class PlayerMotor : MonoBehaviour
     {
         if(velocity != Vector3.zero)
         {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            if(!rb.SweepTest(transform.forward, out RaycastHit hit, (velocity * Time.fixedDeltaTime).magnitude))
+                rb.Move(rb.position + velocity * Time.fixedDeltaTime, rb.rotation);
         }
     }
 

@@ -16,7 +16,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private LayerMask mask;
 
-    private PlayerWeapon currentWeapon;
+    public PlayerWeapon currentWeapon;
     public WeaponManager weaponManager;
 
 
