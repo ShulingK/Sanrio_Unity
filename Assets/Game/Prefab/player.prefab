@@ -1046,6 +1046,7 @@ MonoBehaviour:
   paper_Collider: {fileID: 5395110838193749953}
   paper_Renderer: {fileID: 6367364654184830828}
   isBabyboo: 0
+  isAlreadySet: 0
 --- !u!114 &6808467338912661393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,9 +1059,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8558de6ba5fa70458f6a09d8c5a95b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  sensivity: 10
-  jumpForce: 100
+  speed: 15
+  sensivity: 15
+  jumpForce: 7
   feet: {fileID: 8143024381182295045}
   animator: {fileID: 8161953874838269410}
 --- !u!114 &4238959016073119380
@@ -1500,7 +1501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3711551292721650384
 RectTransform:
   m_ObjectHideFlags: 0

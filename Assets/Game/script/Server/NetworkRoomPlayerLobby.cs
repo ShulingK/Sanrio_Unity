@@ -18,7 +18,7 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
     [SyncVar(hook = nameof(HandleReadyStatusChanged))]
     public bool IsReady = false;
 
-    
+    private NetworkGamePlayerLobby gamePlayerLobby;
 
     private bool isLeader;
     public bool IsLeader
@@ -107,6 +107,8 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
     public void CmdStartGame()
     {
         if (Room.roomPlayers[0].connectionToClient != connectionToClient) { return; }
+
+        gamePlayerLobby.GenerateMap();
 
         Room.StartGame();
     }
