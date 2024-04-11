@@ -15,13 +15,10 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private Transform weaponHolder;
 
-    [SerializeField]
-    private string weaponLayerName = "Weapon";
 
     void Start()
     {
         EquipWeapon(primaryWeapon);
-        Debug.Log("hey");
     }
 
     public PlayerWeapon GetCurrentWeapon()
@@ -38,6 +35,4 @@ public class WeaponManager : MonoBehaviour
     {
         currentWeapon = _weapon;
     }
-
-
 }

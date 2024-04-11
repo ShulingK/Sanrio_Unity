@@ -1,18 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using Mirror;
 
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : NetworkBehaviour
 {
     [Header("Stats")]
     [SerializeField] 
     private float maxLife = 100f;
+
+    [SyncVar]
     [SerializeField]
     private float life;
+
+    public Image bar;
+    public Sprite full;
+    public Sprite three;
+    public Sprite two;
+    public Sprite one;
 
     public void Start()
     {
         life = maxLife;
+    }
+
+    public void Update()
+    {
+        if (life == 100)
+        {
+            bar.sprite = full;
+        }
+        if (life == 75)
+        {
+            bar.sprite = three;
+        }
+        if (life == 50)
+        {
+            bar.sprite = two;
+        }
+        if (life == 25)
+        {
+            bar.sprite = one;
+        }
     }
 
     public void TakeDamage(float damage)
@@ -35,7 +65,7 @@ public class CharacterManager : MonoBehaviour
 
     public void Death()
     {
-
+        Debug.Log("dead");
     }
 
     public void OnTriggerEnter(Collider other)

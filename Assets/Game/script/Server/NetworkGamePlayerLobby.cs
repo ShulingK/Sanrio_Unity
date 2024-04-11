@@ -1,8 +1,6 @@
 using Mirror;
-using System;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NetworkGamePlayerLobby : NetworkBehaviour
 {
@@ -10,7 +8,7 @@ public class NetworkGamePlayerLobby : NetworkBehaviour
     private string DisplayName = "Loading...";
 
     private NetworkManagerLobby room;
-    
+
     private NetworkManagerLobby Room
     {
         get

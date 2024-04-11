@@ -1,5 +1,6 @@
 using Mirror;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
     [SyncVar(hook = nameof(HandleReadyStatusChanged))]
     public bool IsReady = false;
 
-    
+    private NetworkGamePlayerLobby gamePlayerLobby;
 
     private bool isLeader;
     public bool IsLeader

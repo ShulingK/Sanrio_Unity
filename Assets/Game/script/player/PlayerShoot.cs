@@ -16,20 +16,13 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private LayerMask mask;
 
-    private PlayerWeapon currentWeapon;
-    private WeaponManager weaponManager;
+    public PlayerWeapon currentWeapon;
+    public WeaponManager weaponManager;
 
 
     public ParticleSystem muzzleFlash;
     public GameObject hitEffectPrefab;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        weaponManager = GetComponent<WeaponManager>();
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -49,8 +42,6 @@ public class PlayerShoot : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
-                   
-                    Debug.Log(currentWeapon.bullet);
                 }
                 else if (Input.GetButtonUp("Fire1"))
                 {
@@ -75,8 +66,13 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask))
         {
-            Debug.Log(hit.collider.name);
             GameObject ink = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal), hit.transform);
+            if(hit.collider.tag == "Player")
+            {
+                CharacterManager test = hit.collider.gameObject.GetComponent<CharacterManager>();
+                test.TakeDamage(currentWeapon.damage);
+
+            }
             Destroy(ink,30f);
             
         }

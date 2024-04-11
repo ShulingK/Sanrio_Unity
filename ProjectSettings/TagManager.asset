@@ -8,6 +8,7 @@ TagManager:
   - jumpable
   - heal
   - key
+  - PaperMen
   layers:
   - Default
   - TransparentFX

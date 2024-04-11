@@ -1,12 +1,14 @@
 using TMPro;
 using UnityEngine;
+using Mirror;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance;
 
     [Header("Time")]
     [SerializeField]
+    [SyncVar]
     public float time = 0f;
 
     [SerializeField]
@@ -15,16 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gameDuration = 480f;
 
-    /*[SerializeField]
-    private TextMeshProUGUI timer;
-*/
     [Header("GameData")]
     [SerializeField]
+    [SyncVar]
     private int keyCount = 0;
     public int keyCountMax = 4;
-    
-    /*[SerializeField]
-    private TextMeshProUGUI textKeyCount;*/
+
     public void Awake()
     {
         if (Instance != null)
@@ -44,11 +42,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        time = gameDuration - (int)Time.time - startTime;
-        
-        //timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+        time = gameDuration - (int)Time.time - startTime;   
+    }
 
-        DisplayKeyCount();
+    public void StartGame()
+    {
+        gameDuration = 480f;
     }
 
     public void AddKey()
@@ -61,8 +60,8 @@ public class GameManager : MonoBehaviour
         return keyCount;
     }
 
-    public void DisplayKeyCount()
+    public void DisplayKeyCount(TextMeshProUGUI textKeyCount)
     {
-        //textKeyCount.text = keyCount.ToString();
+        textKeyCount.text = keyCount.ToString();
     }
 }
