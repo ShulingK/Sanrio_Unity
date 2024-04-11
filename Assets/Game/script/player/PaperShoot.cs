@@ -39,6 +39,7 @@ public class PaperShoot : MonoBehaviour
     public GameObject shuriken;
     private void Shoot()
     {
+        //GetComponentInParent<transform>
         GameObject newShuriken = Instantiate(shuriken, transform.position, transform.rotation);
         newShuriken.GetComponent<Rigidbody>().velocity = transform.rotation * transform.forward;
 /*        RaycastHit hit;
