@@ -1,5 +1,6 @@
 using Mirror;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +41,19 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
             return room = NetworkManager.singleton as NetworkManagerLobby;
         }
     }
+
+    private void Start()
+    {
+        try
+        {
+            gamePlayerLobby = GameObject.Find("GamePlayerNetwork").GetComponent<NetworkGamePlayerLobby>();
+        }
+        catch
+        {
+            Debug.LogError("Error : GamePlayerNetwork not find !");
+        }
+    }
+
 
     public override void OnStartAuthority()
     {
@@ -107,8 +121,6 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
     public void CmdStartGame()
     {
         if (Room.roomPlayers[0].connectionToClient != connectionToClient) { return; }
-
-        gamePlayerLobby.GenerateMap();
 
         Room.StartGame();
     }

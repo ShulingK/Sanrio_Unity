@@ -22,7 +22,20 @@ public class PlayerSetup : NetworkBehaviour
     public CapsuleCollider paper_Collider;
     public GameObject paper_Renderer;
 
+    [SyncVar(hook = nameof(HandleIsBabyboo))]
     public bool isBabyboo;
+    
+    private void HandleIsBabyboo(bool oldValue, bool newValue)
+    {
+        paper_Collider.enabled = !isBabyboo;
+        paper_Renderer.SetActive(!isBabyboo);
+
+        baby_Collider.enabled = isBabyboo;
+        baby_Renderer.SetActive(isBabyboo);
+        weapon.SetActive(isBabyboo);
+    }
+
+
     public bool isAlreadySet = false;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
@@ -30,24 +43,6 @@ public class PlayerSetup : NetworkBehaviour
 
     private void HandleIsInGame(bool oldValue, bool newValue)
     {
-        /*Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;*/
-
-        if (isBabyboo)
-        {
-            baby_UI.gameObject.SetActive(IsInGame);
-            paper_Collider.enabled = !IsInGame;
-            baby_Renderer.SetActive(IsInGame);
-            weapon.SetActive(IsInGame);
-        }
-        else
-        {
-            paper_UI.gameObject.SetActive(IsInGame);
-            baby_Collider.enabled = !IsInGame;
-            paper_Renderer.SetActive(IsInGame);
-        }
-        transform.position = Vector3.zero;
-
         lobby_UI.gameObject.SetActive(!IsInGame);
     }
 
@@ -87,7 +82,7 @@ public class PlayerSetup : NetworkBehaviour
 
         lobby_UI.UpdateDisplay();
 
-        transform.position = new Vector3(0, 500, 0);
+        /*transform.position = new Vector3(0, 500, 0);*/
     }
 
     public override void OnStopClient()
@@ -99,6 +94,15 @@ public class PlayerSetup : NetworkBehaviour
 
     public void OnGameStart()
     {
+        if (!isBabyboo)
+        {
+            paper_UI.SetActive(true);
+        }
+        else
+        {
+            baby_UI.SetActive(true);
+        }
+
         IsInGame = true;
     }
 }
