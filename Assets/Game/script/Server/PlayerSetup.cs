@@ -22,7 +22,7 @@ public class PlayerSetup : NetworkBehaviour
     public CapsuleCollider paper_Collider;
     public GameObject paper_Renderer;
 
-    public bool isBabyboo;
+    public bool isBabyboo = false;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;
@@ -31,10 +31,8 @@ public class PlayerSetup : NetworkBehaviour
     {
         /*Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;*/
-        int rnd = Random.Range(1, 3);
-        if (rnd == 1)
+        if (isBabyboo)
         {
-            isBabyboo = true;
             baby_UI.gameObject.SetActive(IsInGame);
             paper_Collider.enabled = !IsInGame;
             baby_Renderer.SetActive(IsInGame);
@@ -42,8 +40,6 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
-            isBabyboo = false;
-            Debug.Log("Comment ça?");
             paper_UI.gameObject.SetActive(IsInGame);
             baby_Collider.enabled = !IsInGame;
             paper_Renderer.SetActive(IsInGame);

@@ -1217,6 +1217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a482dc0836924954ba38741f85e75842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   maxLife: 100
   life: 0
   bar: {fileID: 2638499888448814621}
@@ -1500,7 +1503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3711551292721650384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2577,7 +2580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ccaa74b468df9459ad5b9d753bce3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nam: pewpew
+  nam: ratatata
   damage: 25
   range: 500
   fireRate: 5
@@ -2829,6 +2832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea118d25da51e64399861358a177bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   weapon: {fileID: 8917398344911163436}
   cam: {fileID: 3612015601410979316}
   mask:
@@ -2939,7 +2945,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d1afa045b2e3db44826b38fabefc85f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7654561695153045975}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d1afa045b2e3db44826b38fabefc85f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 367999661032078687}
   m_SourcePrefab: {fileID: 100100000, guid: 5d1afa045b2e3db44826b38fabefc85f, type: 3}
 --- !u!4 &5987180314477252054 stripped
 Transform:
@@ -2953,6 +2967,39 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6096754297144191549}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7654561695153045975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367364654184830828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63ccd3575bc9a74c8b1689ffa02d3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryWeapon: {fileID: 5738558727443377163, guid: 5ce25cbcd94f42041995b2a79b2fc15d,
+    type: 3}
+  currentWeapon: {fileID: 0}
+  weaponHolder: {fileID: 0}
+  weaponLayerName: Weapon
+--- !u!114 &367999661032078687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367364654184830828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06be59b00dec03a4d8ee16db8b0516fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 5738558727443377163, guid: 5ce25cbcd94f42041995b2a79b2fc15d, type: 3}
+  cam: {fileID: 3612015601410979316}
+  shuriken: {fileID: 2620167029918574117, guid: 5ce25cbcd94f42041995b2a79b2fc15d,
+    type: 3}
 --- !u!1001 &6304949907748964109
 PrefabInstance:
   m_ObjectHideFlags: 0

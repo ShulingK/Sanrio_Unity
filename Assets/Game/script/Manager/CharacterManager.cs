@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-
-public class CharacterManager : MonoBehaviour
+using Mirror;
+public class CharacterManager : NetworkBehaviour
 {
     [Header("Stats")]
     [SerializeField] 

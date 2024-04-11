@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 
 [RequireComponent(typeof(WeaponManager))]
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot : NetworkBehaviour
 {
     public PlayerWeapon weapon;
 
@@ -76,7 +76,7 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask))
         {
             GameObject ink = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal), hit.transform);
-            if(hit.collider.tag == "Player")
+            if (hit.collider.tag == "Player")
             {
                 CharacterManager test = hit.collider.gameObject.GetComponent<CharacterManager>();
                 test.TakeDamage(currentWeapon.damage);
