@@ -17,19 +17,12 @@ public class PlayerShoot : MonoBehaviour
     private LayerMask mask;
 
     private PlayerWeapon currentWeapon;
-    private WeaponManager weaponManager;
+    public WeaponManager weaponManager;
 
 
     public ParticleSystem muzzleFlash;
     public GameObject hitEffectPrefab;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        weaponManager = GetComponent<WeaponManager>();
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -49,8 +42,6 @@ public class PlayerShoot : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
-                   
-                    Debug.Log(currentWeapon.bullet);
                 }
                 else if (Input.GetButtonUp("Fire1"))
                 {

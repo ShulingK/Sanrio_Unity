@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class NetworkManagerLobby : NetworkManager
 {
-    [SerializeField] private int minPlayers = 1;
-
-
-    [Header("Game")]
-    [SerializeField] private NetworkGamePlayerLobby gamePlayersPrefab = null;
+    [SerializeField] private int minPlayers = 1; 
 
     [Header("Sections")]
     [SerializeField] private List<GameObject> game_GameObject;

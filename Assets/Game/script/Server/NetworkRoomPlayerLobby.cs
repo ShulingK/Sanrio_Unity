@@ -42,19 +42,6 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
         }
     }
 
-    private void Start()
-    {
-        try
-        {
-            gamePlayerLobby = GameObject.Find("GamePlayerNetwork").GetComponent<NetworkGamePlayerLobby>();
-        }
-        catch
-        {
-            Debug.LogError("Error : GamePlayerNetwork not find !");
-        }
-    }
-
-
     public override void OnStartAuthority()
     {
         CmdSetDisplayName(PlayerNameInput.DisplayName);

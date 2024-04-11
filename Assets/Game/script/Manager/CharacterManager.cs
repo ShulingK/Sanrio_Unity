@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Mirror;
 
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : NetworkBehaviour
 {
     [Header("Stats")]
     [SerializeField] 
     private float maxLife = 100f;
+
+    [SyncVar]
     [SerializeField]
     private float life;
 
@@ -78,6 +81,4 @@ public class CharacterManager : MonoBehaviour
             other.GetComponent<KeyManager>().AddKey();
         }
     }
-
-    
 }

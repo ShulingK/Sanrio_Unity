@@ -1001,7 +1001,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaTensor: {x: 10, y: 10, z: 10}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1010,7 +1010,7 @@ Rigidbody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 1
-  m_ImplicitTensor: 1
+  m_ImplicitTensor: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1037,6 +1037,7 @@ MonoBehaviour:
   - {fileID: 6808467338912661393}
   - {fileID: 8161953874838269410}
   - {fileID: 714709564558792489}
+  - {fileID: 5450431376265195785}
   lobby_UI: {fileID: 6684560372716739956}
   baby_UI: {fileID: 5096689422329023599}
   baby_Collider: {fileID: 739617082835097811}
@@ -1218,6 +1219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a482dc0836924954ba38741f85e75842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   maxLife: 100
   life: 0
   bar: {fileID: 2638499888448814621}
@@ -1501,7 +1505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3711551292721650384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1547,7 +1551,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &2697363830502993467
 MonoBehaviour:
@@ -2817,7 +2821,6 @@ MonoBehaviour:
   primaryWeapon: {fileID: 8917398344911163436}
   currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 0}
-  weaponLayerName: Weapon
 --- !u!114 &6777155193243044792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2835,6 +2838,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 4294967295
+  weaponManager: {fileID: 4075103381927369243}
   muzzleFlash: {fileID: 3177104141601627456}
   hitEffectPrefab: {fileID: 6026015937924342277, guid: befdcdd58765e02459f92e6742528ec2,
     type: 3}
@@ -2962,6 +2966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9185286213490371964}
     m_Modifications:
+    - target: {fileID: 4311213910224087, guid: 28208021c2b6c5e4490dc732d7d0c52e, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 544718296001585202, guid: 28208021c2b6c5e4490dc732d7d0c52e,
         type: 3}
       propertyPath: _assetId

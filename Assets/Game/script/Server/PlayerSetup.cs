@@ -27,9 +27,11 @@ public class PlayerSetup : NetworkBehaviour
     
     private void HandleIsBabyboo(bool oldValue, bool newValue)
     {
+        paper_UI.SetActive(false) ;
         paper_Collider.enabled = !isBabyboo;
         paper_Renderer.SetActive(!isBabyboo);
 
+        baby_UI.SetActive(isBabyboo);
         baby_Collider.enabled = isBabyboo;
         baby_Renderer.SetActive(isBabyboo);
         weapon.SetActive(isBabyboo);
@@ -94,15 +96,6 @@ public class PlayerSetup : NetworkBehaviour
 
     public void OnGameStart()
     {
-        if (!isBabyboo)
-        {
-            paper_UI.SetActive(true);
-        }
-        else
-        {
-            baby_UI.SetActive(true);
-        }
-
         IsInGame = true;
     }
 }
