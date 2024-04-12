@@ -46,7 +46,7 @@ public class PlayerSetup : NetworkBehaviour
 
     [SyncVar(hook = nameof(HandleIsBabyboo))]
     public bool isBabyboo;
-    
+
     private void HandleIsBabyboo(bool oldValue, bool newValue)
     {
         paper_UI.SetActive(!isBabyboo) ;
@@ -70,15 +70,17 @@ public class PlayerSetup : NetworkBehaviour
 
     private void HandleIsInGame(bool oldValue, bool newValue)
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         lobby_UI.gameObject.SetActive(!IsInGame);
     }
 
     private void Update()
     {
-        GameManager.Instance.DisplayKeyCount(paper_TextMeshProUGUI);    
+        GameManager.Instance.DisplayKeyCount(paper_TextMeshProUGUI);
 
         babyboo_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
-        
+
         paper_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
 
 
@@ -120,7 +122,7 @@ public class PlayerSetup : NetworkBehaviour
 
     private void Start()
     {
-     
+
         if (!isLocalPlayer)
         {
             lobby_UI.gameObject.SetActive(false);
@@ -133,7 +135,7 @@ public class PlayerSetup : NetworkBehaviour
                     components_to_disable[i].enabled = false;
                 }
             }
-            
+
         }
     }
 
