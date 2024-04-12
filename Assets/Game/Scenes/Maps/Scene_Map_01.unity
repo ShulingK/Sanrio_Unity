@@ -5416,18 +5416,24 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1618310561}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618310563}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4a19b2fbbf70c74d87e63025c2b5c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1618310563 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3646084626492703597, guid: 87563760f57862a4f9854850b594cd37,
+--- !u!114 &1618310563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5980758967070870158, guid: 87563760f57862a4f9854850b594cd37,
     type: 3}
   m_PrefabInstance: {fileID: 1618310561}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119098d5be556ba4ebafc9e76ac485b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1627722624
 GameObject:
   m_ObjectHideFlags: 0
@@ -5808,7 +5814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1618310563}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: HostLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
