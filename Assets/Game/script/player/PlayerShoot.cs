@@ -50,7 +50,7 @@ public class PlayerShoot : NetworkBehaviour
                 {
                     InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
                    
-                    Debug.Log(currentWeapon.bullet);
+                    //Debug.Log(currentWeapon.bullet);
                 }
                 else if (Input.GetButtonUp("Fire1"))
                 {

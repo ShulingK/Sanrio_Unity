@@ -39,20 +39,35 @@ public class PaperShoot : MonoBehaviour
     public GameObject shuriken;
     private void Shoot()
     {
-        //GetComponentInParent<transform>
-        GameObject newShuriken = Instantiate(shuriken, transform.position, transform.rotation);
-        newShuriken.GetComponent<Rigidbody>().velocity = transform.rotation * transform.forward;
-/*        RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range))
+        Debug.Log("shoot");
+        //GetComponentInParent<Transform>
+        if (currentWeapon.bullet <= 0)
         {
+            Debug.Log("tamere");
+            StartCoroutine(Reload());
+            return;
+        }
 
-        }*/
+        GameObject newShuriken = Instantiate(shuriken, cam.transform.position + new Vector3(0,-1, 1), GetComponentInParent<Transform>().rotation) ;
+        newShuriken.GetComponent<Rigidbody>().velocity += GetComponentInParent<Transform>().rotation * cam.transform.forward * 100 ;
+        
+
+        currentWeapon.bullet--;
+        /*        RaycastHit hit;
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range))
+                {
+
+                }*/
     }
 
-    private void Reload(PlayerWeapon _currentWeapon)
+    IEnumerator Reload()
     {
-        //au bout de 30
+        //Print the time of when the function is first called.
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(30);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("reloading");
+        currentWeapon.bullet++;
     }
-
-
 }

@@ -62,7 +62,7 @@ public class CharacterManager : NetworkBehaviour
 
     public void Death()
     {
-        Debug.Log("dead");
+        //Debug.Log("dead");
     }
 
     public void OnTriggerEnter(Collider other)

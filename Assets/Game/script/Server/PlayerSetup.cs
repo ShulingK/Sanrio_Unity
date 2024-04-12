@@ -22,7 +22,7 @@ public class PlayerSetup : NetworkBehaviour
     public CapsuleCollider paper_Collider;
     public GameObject paper_Renderer;
 
-    public bool isBabyboo = false;
+    public bool isBabyboo = true;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;

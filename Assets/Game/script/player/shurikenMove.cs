@@ -9,11 +9,10 @@ public class shurikenMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
     }
-
     // Update is called once per frame
     void Update()
     {
+
     }
 }
