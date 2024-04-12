@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -19,6 +20,8 @@ public class CharacterManager : NetworkBehaviour
     public Sprite three;
     public Sprite two;
     public Sprite one;
+
+    public Renderer renderer;
 
     public void Start()
     {
@@ -42,6 +45,16 @@ public class CharacterManager : NetworkBehaviour
         if (life == 25)
         {
             bar.sprite = one;
+        }
+        if (life == 0)
+        {
+            gameObject.GetComponent<PlayerSetup>().loseUI.SetActive(true);
+            
+            renderer.enabled = false;
+
+            StartCoroutine(gameObject.GetComponent<PlayerSetup>().Delay(5));
+    
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -79,6 +92,10 @@ public class CharacterManager : NetworkBehaviour
         if (other.tag == "key")
         {
             other.GetComponent<KeyManager>().AddKey();
+        }
+        if (other.tag == "finishzone" && !GetComponent<PlayerSetup>().isBabyboo && GameManager.Instance.GetKeyCount() == GameManager.Instance.keyCountMax)
+        {
+            GameManager.Instance.isPapermenWon = true;
         }
     }
 }

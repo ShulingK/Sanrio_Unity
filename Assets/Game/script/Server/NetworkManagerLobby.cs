@@ -121,6 +121,8 @@ public class NetworkManagerLobby : NetworkManager
         if(!IsReadyToStart()) { return; }
 
         UpdateGame();
+
+        GameManager.Instance.StartGame();
     }
 
     public void UpdateGame()

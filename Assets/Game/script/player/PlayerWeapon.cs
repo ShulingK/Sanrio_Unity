@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
 public class PlayerWeapon : MonoBehaviour
 {
+    public TextMeshProUGUI text1;
+    public TextMeshProUGUI text2;
+
     public string nam;
     public int damage;
     public float range;
@@ -23,7 +27,8 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        text1.text = bullet.ToString();
+        text2.text = bulletMax.ToString();
     }
 
 

@@ -59,6 +59,17 @@ public class PlayerShoot : MonoBehaviour
         
     }
 
+    public int GetBullet()
+    {
+        return weaponManager.GetCurrentWeapon().bullet;
+    }
+
+    public int GetMaxBullet()
+    {
+        return weaponManager.GetCurrentWeapon().bulletMax;
+    }
+
+
     private void Shoot()
     {
 

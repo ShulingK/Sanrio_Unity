@@ -1,6 +1,8 @@
 using UnityEngine;
 using Mirror;
 using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerSetup : NetworkBehaviour
 {
@@ -18,17 +20,18 @@ public class PlayerSetup : NetworkBehaviour
 
     public NetworkRoomPlayerLobby lobby_UI;
 
+    public Animator animator;
+
+
     [Header("Baby")]
     public GameObject baby_UI;
     public CapsuleCollider baby_Collider;
     public GameObject baby_Renderer;
     public GameObject weapon;
     public TextMeshProUGUI babyboo_timer;
-    public TextMeshProUGUI babyboo_bullet;
-    public TextMeshProUGUI babyboo_reload;
     public TextMeshProUGUI babyboo_paperInGame;
 
-
+    public RuntimeAnimatorController _animation;
 
     [Header("Paper")]
     public GameObject paper_UI;
@@ -37,12 +40,16 @@ public class PlayerSetup : NetworkBehaviour
     public TextMeshProUGUI paper_TextMeshProUGUI;
     public TextMeshProUGUI paper_timer;
 
+    [Header("W/L")]
+    public GameObject winUI;
+    public GameObject loseUI;
+
     [SyncVar(hook = nameof(HandleIsBabyboo))]
     public bool isBabyboo;
     
     private void HandleIsBabyboo(bool oldValue, bool newValue)
     {
-        paper_UI.SetActive(false) ;
+        paper_UI.SetActive(!isBabyboo) ;
         paper_Collider.enabled = !isBabyboo;
         paper_Renderer.SetActive(!isBabyboo);
 
@@ -50,13 +57,13 @@ public class PlayerSetup : NetworkBehaviour
         baby_Collider.enabled = isBabyboo;
         baby_Renderer.SetActive(isBabyboo);
         weapon.SetActive(isBabyboo);
+
+        animator.runtimeAnimatorController = _animation;
     }
 
 
     public bool isAlreadySet = false;
 
-
-    private PlayerShoot playerShoot;
 
     [SyncVar(hook = nameof(HandleIsInGame))]
     private bool IsInGame;
@@ -66,25 +73,39 @@ public class PlayerSetup : NetworkBehaviour
         lobby_UI.gameObject.SetActive(!IsInGame);
     }
 
-    private void Start()
-    {
-        playerShoot = gameObject.GetComponent<PlayerShoot>();
-    }
-
     private void Update()
     {
         GameManager.Instance.DisplayKeyCount(paper_TextMeshProUGUI);    
 
-        if (isBabyboo)
+        babyboo_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
+        
+        paper_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
+
+
+
+        if (GameManager.Instance.time <= 0f && isBabyboo)
         {
-            babyboo_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
-            babyboo_bullet.text = playerShoot.currentWeapon.bullet.ToString();
-            babyboo_reload.text = playerShoot.currentWeapon.bulletMax.ToString();
+            winUI.SetActive(!GameManager.Instance.isPapermenWon);
+            loseUI.SetActive(GameManager.Instance.isPapermenWon);
+
+            StartCoroutine(Delay(5));
+
+            SceneManager.LoadScene(0);
         }
-        else
+        else if (GameManager.Instance.time <= 0f && !isBabyboo)
         {
-            paper_timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(GameManager.Instance.time / 60), GameManager.Instance.time % 60);
+            winUI.SetActive(GameManager.Instance.isPapermenWon);
+            loseUI.SetActive(!GameManager.Instance.isPapermenWon);
+
+            StartCoroutine(Delay(5));
+
+            SceneManager.LoadScene(0);
         }
+    }
+
+    public IEnumerator Delay(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 
 
@@ -99,11 +120,12 @@ public class PlayerSetup : NetworkBehaviour
 
     private void Start()
     {
+     
         if (!isLocalPlayer)
         {
             lobby_UI.gameObject.SetActive(false);
 
-            // désactive les composants si ce n'est pas à nous
+            // dï¿½sactive les composants si ce n'est pas ï¿½ nous
             if (components_to_disable != null)
             {
                 for (int i = 0; i < components_to_disable.Length; i++)

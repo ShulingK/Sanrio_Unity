@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class GameManager : NetworkBehaviour
 {
@@ -9,7 +10,7 @@ public class GameManager : NetworkBehaviour
     [Header("Time")]
     [SerializeField]
     [SyncVar]
-    public float time = 0f;
+    public float time = 100000f;
 
     [SerializeField]
     private float startTime;
@@ -23,6 +24,14 @@ public class GameManager : NetworkBehaviour
     private int keyCount = 0;
     public int keyCountMax = 4;
 
+    [SyncVar(hook = nameof(HandleIsPapermenWin))]
+    public bool isPapermenWon = false;
+    private void HandleIsPapermenWin(bool oldValue,  bool newValue)
+    {
+        time = 0f;
+    }
+
+
     public void Awake()
     {
         if (Instance != null)
@@ -34,20 +43,17 @@ public class GameManager : NetworkBehaviour
         Instance = this;
     }
 
-    public void Start()
-    {
-        time = gameDuration; 
-        startTime = Time.time;
-    }
 
     void Update()
     {
         time = gameDuration - (int)Time.time - startTime;   
     }
 
+
     public void StartGame()
     {
-        gameDuration = 480f;
+        time = gameDuration;
+        startTime = Time.time;
     }
 
     public void AddKey()

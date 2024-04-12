@@ -59,5 +59,13 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && feet.isGrounded)
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * 100);
 
+        if (xMov !=  0 || zMov != 0)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - heal
   - key
   - PaperMen
+  - finishzone
   layers:
   - Default
   - TransparentFX
