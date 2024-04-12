@@ -1614,7 +1614,7 @@ MonoBehaviour:
   - {fileID: 714709564558792489}
   - {fileID: 5450431376265195785}
   spawnPos: {x: 0, y: 0, z: 0}
-  lobby_UI: {fileID: 0}
+  lobby_UI: {fileID: 1078422266028834472}
   animator: {fileID: 8161953874838269410}
   baby_UI: {fileID: 5096689422329023599}
   baby_Collider: {fileID: 739617082835097811}
@@ -3570,7 +3570,7 @@ PrefabInstance:
     - target: {fileID: 1255327932913504520, guid: 28208021c2b6c5e4490dc732d7d0c52e,
         type: 3}
       propertyPath: m_Name
-      value: NetworkMenuLobby (1)
+      value: NetworkMenuLobby
       objectReference: {fileID: 0}
     - target: {fileID: 1255327932913504520, guid: 28208021c2b6c5e4490dc732d7d0c52e,
         type: 3}
@@ -4531,6 +4531,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28208021c2b6c5e4490dc732d7d0c52e, type: 3}
+--- !u!114 &1078422266028834472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 845545019575982713, guid: 28208021c2b6c5e4490dc732d7d0c52e,
+    type: 3}
+  m_PrefabInstance: {fileID: 381866854163440849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452265726777177561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022151760380f94d897948ab120fcc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1452265726777177561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1255327932913504520, guid: 28208021c2b6c5e4490dc732d7d0c52e,
