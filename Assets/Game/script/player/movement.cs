@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private PlayerMotor motor;
 
     [Header("Animation")]
-    [SerializeField] private Animator animator;
+    [SerializeField] public Animator animator;
 
     private void Start()
     {
@@ -59,6 +59,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && feet.isGrounded)
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * 100);
 
+        Debug.Log("if: " + (xMov != 0 || zMov != 0));
         if (xMov !=  0 || zMov != 0)
         {
             animator.SetBool("IsMoving", true);
